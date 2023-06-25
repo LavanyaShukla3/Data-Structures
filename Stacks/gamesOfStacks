@@ -1,0 +1,33 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class gameOfStacks{
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        
+            int n = scn.nextInt();
+            int m = scn.nextInt();
+            int k = scn.nextInt();
+            int[] st1 = new int[n];
+            int[] st2 = new int[m];
+            for (int j = 0; j < n; j++) {
+                st1[j] = scn.nextInt();
+            }
+            for (int j = 0; j < m; j++) {
+                st2[j] = scn.nextInt();
+            }
+            int x = recursion(st1, st2, k, 0, 0);
+            System.out.println(x);
+        
+    }
+
+    public static int recursion(int[] st1, int[] st2, int k, int sum, int count) {
+        if (sum > 10) {
+            return count - 1;
+        }
+        int leftStack = recursion(Arrays.copyOfRange(st1, 1, st1.length), st2, k, sum + st1[0], count + 1);
+        int rightStack = recursion(st1, Arrays.copyOfRange(st2, 1, st2.length), k, sum + st2[0], count + 1);
+
+        return Math.max(leftStack, rightStack);
+    }
+}
