@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+
+class Solution{
+    public boolean isPalindrome(String s) {
+        ArrayList<Character> a= new ArrayList<>();
+
+        for(int i=0; i<s.length(); i++){
+            char c= s.charAt(i);
+            if(isAlphaNumeric(c)){
+                a.add(islowercase(c));
+            }
+        }
+        int j=0;
+        int k=a.size()-1;
+        while(j<k){
+            if(a.get(j) != a.get(k)){
+                return false;
+            }
+            k--;
+            j++;
+        }
+        return true;
+    }
+    public boolean isAlphaNumeric(char C){
+        return((C>='A' && C<= 'Z') || (C>='a' && C<= 'z') || (C>='0' && C<= '9'));
+    }
+    public char islowercase(char C){
+        if((C>='A') && (C<= 'Z')){
+            return(char) (C+32);
+        }
+        return C;
+        
+    }
+
+}
